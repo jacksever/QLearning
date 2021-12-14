@@ -112,7 +112,13 @@ namespace QLearning
 
         private int SetInitialState(int numberOfStates)
         {
-            return _random.Next(0, numberOfStates);
+            List<int> closeState = new List<int>() {3, 4, 5, 8, 14};
+            int state = _random.Next(0, numberOfStates);
+
+            if (!closeState.Exists(element => element == state))
+                return state;
+            else
+                return SetInitialState(numberOfStates);
         }
     }
 }
